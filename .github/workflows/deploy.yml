@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - name: Deploy shopizer-shop
-        run: echo "Deploying shopizer-shop:${{ github.event.inputs.image_tag }}"
+      - name: Deploy shopizer-frontend
+        run: kubectl rollout restart deployment/shopizer-frontend -n shopizer
