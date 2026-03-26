@@ -47,3 +47,12 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+  deploy:
+    needs: build-test-push
+    runs-on: ubuntu-latest
+    environment: production        # ← requires manual approval in GitHub UI
+
+    steps:
+      - name: Deploy frontend to local Kubernetes
+        run: echo "Approved — rolling out shopizer-frontend after shop update"
